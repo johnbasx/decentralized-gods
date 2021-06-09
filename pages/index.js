@@ -1,9 +1,8 @@
 import Head from "next/head";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useTheme } from "next-themes";
 
 import { getCuratedPhotos } from "../lib/api";
-import { FaMoon, FaLightbulb } from "react-icons/fa";
 
 export default function Home({ data }) {
   const [photos, setPhotos] = useState(data);
@@ -23,7 +22,7 @@ export default function Home({ data }) {
           />
         </div>
         <div className="flex flex-col justify-center items-center mb-10">
-          <h1 className="text-3xl lg:text-4xl font-extrabold text-gray-50">
+          <h1 className="text-3xl lg:text-4xl font-extrabold text-black dark:text-white">
             Decentralized Gods
           </h1>
           <span className="text-gray-700 text-sm">by</span>
