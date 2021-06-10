@@ -1,20 +1,39 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
 import { getCuratedPhotos } from "../lib/api";
 
 export default function Home({ data }) {
   const [photos, setPhotos] = useState(data);
+  const [loading, setLoading] = useState(false);
   console.log(data);
 
+  const noOfSkeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const checkData = async (data) => {
+    if (photos) {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    setLoading(true);
+    checkData();
+  }, []);
+
+  const skeleton = () => {
+    return (
+      <div className="p-1">
+        <div className="h-28 w-28 lg:h-40 lg:w-40 rounded-lg bg-white opacity-10 animate-pulse"></div>
+      </div>
+    );
+  };
   return (
     <>
       <Head>
         <title>Decentralized Gods</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="h-full px-0">
+      <div className="h-full px-0 bg-black">
         <div className="flex justify-center items-center px-4 py-8">
           <img
             src="./decentralized-gods-logo.png"
@@ -29,7 +48,7 @@ export default function Home({ data }) {
 
           <a
             href="https://rarible.com/user/0xcaf2f9599b41956bdfda9b5cd42c05173355bf07"
-            className="mt-2 bg-gray-100 text-black hover:bg-yellow-400  transition delay-100 rounded-full px-6 py-2"
+            className="mt-2 bg-white  text-black hover:bg-yellow-400  transition delay-100 rounded-full px-6 py-2"
           >
             <span className="text-lg font-semibold tracking-widest">
               @JOHN SKY
@@ -37,15 +56,17 @@ export default function Home({ data }) {
           </a>
         </div>
         <div className="flex flex-row flex-wrap justify-center">
-          {photos.map((pic) => (
-            <div className="object-cover p-1">
-              <img
-                src={pic.src.original}
-                alt={pic.photographer}
-                className="h-28 w-28 lg:h-40 lg:w-40 object-cover rounded-lg"
-              />
-            </div>
-          ))}
+          {loading
+            ? noOfSkeletons.map(() => skeleton())
+            : photos.map((pic) => (
+                <div className=" p-1" key={pic.src.id}>
+                  <img
+                    src={pic.src.original}
+                    alt={pic.photographer}
+                    className="h-28 w-28 lg:h-40 object-cover lg:w-40 rounded-lg hover:"
+                  />
+                </div>
+              ))}
         </div>
       </div>
     </>
