@@ -41,7 +41,7 @@ export default function Home({ data }) {
           />
         </div>
         <div className="flex flex-col justify-center items-center mb-10">
-          <h1 className="text-3xl lg:text-4xl font-extrabold text-black dark:text-white">
+          <h1 className="text-3xl lg:text-4xl font-extrabold dark:text-white">
             Decentralized Gods
           </h1>
           <span className="text-gray-700 text-sm">by</span>
