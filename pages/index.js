@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
 import { getCuratedPhotos } from "../lib/api";
+import Seo from "../components/seo";
 
 export default function Home({ data }) {
   const [photos, setPhotos] = useState(data);
@@ -33,6 +34,7 @@ export default function Home({ data }) {
         <title>Decentralized Gods</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Seo />
       <div className="h-full px-0 bg-black">
         <div className="flex justify-center items-center px-4 py-8">
           <img
@@ -48,7 +50,7 @@ export default function Home({ data }) {
 
           <a
             href="https://rarible.com/user/0xcaf2f9599b41956bdfda9b5cd42c05173355bf07"
-            className="mt-2 bg-white  text-black hover:bg-yellow-400  transition delay-100 rounded-full px-6 py-2"
+            className="mt-2 bg-white text-black hover:bg-yellow-400  transition delay-100 rounded-full px-6 py-2"
           >
             <span className="text-lg font-semibold tracking-widest">
               @JOHN SKY
@@ -59,11 +61,11 @@ export default function Home({ data }) {
           {loading
             ? noOfSkeletons.map(() => skeleton())
             : photos.map((pic) => (
-                <div className=" p-1" key={pic.src.id}>
+                <div className="p-1" key={pic.src.id}>
                   <img
                     src={pic.src.original}
                     alt={pic.photographer}
-                    className="h-28 w-28 lg:h-40 object-cover lg:w-40 rounded-lg hover:"
+                    className="h-28 w-28 lg:h-40 object-cover lg:w-40 rounded-lg"
                   />
                 </div>
               ))}
